@@ -24,9 +24,13 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/@popperjs/core/dist/umd/popper.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -116,6 +120,46 @@
             "production": {
               "devServerTarget": "magicComponents:serve:production"
             }
+          }
+        }
+      }
+    },
+    "firstComponents": {
+      "projectType": "library",
+      "root": "projects/first-components",
+      "sourceRoot": "projects/first-components/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "tsConfig": "projects/first-components/tsconfig.lib.json",
+            "project": "projects/first-components/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/first-components/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/first-components/src/test.ts",
+            "tsConfig": "projects/first-components/tsconfig.spec.json",
+            "karmaConfig": "projects/first-components/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/first-components/tsconfig.lib.json",
+              "projects/first-components/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         }
       }
